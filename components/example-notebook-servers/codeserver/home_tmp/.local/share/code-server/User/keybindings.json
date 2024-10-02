@@ -1,0 +1,312 @@
+// Place your key bindings in this file to override the defaults
+[
+    {
+        "key": "ctrl+numpad0",
+        "command": "editor.action.formatDocument",
+        "when": "editorHasDocumentFormattingProvider && editorTextFocus && !editorReadonly && !inCompositeEditor"
+    },
+    {
+        "key": "ctrl+numpad0",
+        "command": "notebook.format",
+        "when": "notebookEditable && activeEditor == 'workbench.editor.notebook'"
+    },
+    {
+        "key": "ctrl+numpad5",
+        "command": "workbench.action.tasks.runTask",
+        "args": "jupytext"
+    },
+    {
+        "key": "ctrl+numpad1",
+        "command": "workbench.action.tasks.runTask",
+        "args": "xdg-open"
+    },
+    {
+        "key": "ctrl+shift+0",
+        "command": "workbench.action.zoomReset"
+    },
+    {
+        "key": "ctrl+numpad0",
+        "command": "-workbench.action.zoomReset"
+    },
+    {
+        "key": "numpad0 numpad0",
+        "command": "jupyter.restartkernel",
+        "when": "notebookEditorFocused && !inputFocus"
+    },
+    {
+        "key": "0 0",
+        "command": "jupyter.restartkernel",
+        "when": "notebookEditorFocused && !inputFocus"
+    },
+    {
+        "key": "alt+backspace",
+        "command": "notebook.cell.joinAbove",
+        "when": "notebookEditorFocused"
+    },
+    {
+        "key": "ctrl+shift+a",
+        "command": "-codeium.openChatView",
+        "when": "false"
+    },
+    {
+        "key": "ctrl+alt+a",
+        "command": "-codeium.openChatView",
+    },
+    {
+        "key": "ctrl+alt+\\",
+        "command": "codeium.openChatView"
+    },
+    {
+        "key": "ctrl+alt+\\",
+        "command": "workbench.action.toggleSidebarVisibility",
+        "when": "view.codeium.chatPanelView.visible"
+    },
+    {
+        "key": "ctrl+m",
+        "command": "workbench.action.toggleMenuBar"
+    },
+    {
+        "key": "ctrl+shift+3",
+        "command": "workbench.action.moveEditorToRightGroup"
+    },
+    {
+        "key": "alt+shift+u",
+        "command": "editor.action.transformToLowercase",
+        "when": "textInputFocus"
+    },
+    {
+        "key": "alt+u",
+        "command": "editor.action.transformToUppercase",
+        "when": "textInputFocus"
+    },
+    {
+        "key": "alt+p",
+        "command": "workbench.action.pinEditor",
+        "when": "!activeEditorIsPinned"
+    },
+    {
+        "key": "alt+p",
+        "command": "workbench.action.unpinEditor",
+        "when": "activeEditorIsPinned"
+    },
+    {
+        "key": "alt+f2",
+        "command": "sqltoolsViewConnectionExplorer.focus",
+        "when": "!view.sqltoolsViewConnectionExplorer.visible"
+    },
+    {
+        "key": "alt+f2",
+        "command": "workbench.action.toggleSidebarVisibility",
+        "when": "view.sqltoolsViewConnectionExplorer.visible"
+    },
+    {
+        "key": "alt+f3",
+        "command": "references-view.tree.focus",
+        "when": "!view.sqltoolsViewConnectionExplorer.visible"
+    },
+    {
+        "key": "alt+f3",
+        "command": "workbench.action.toggleSidebarVisibility",
+        "when": "view.references-view.tree.visible"
+    },
+    {
+        "key": "ctrl+shift+x",
+        "command": "workbench.action.toggleSidebarVisibility",
+        "when": "activeViewlet == 'workbench.view.extensions'"
+    },
+    {
+        "key": "ctrl+shift+f",
+        "command": "workbench.action.toggleSidebarVisibility",
+        "when": "view.workbench.view.search.visible"
+    },
+    {
+        "key": "ctrl+f",
+        "command": "closeFindWidget",
+        "when": "findWidgetVisible"
+    },
+    {
+        "key": "ctrl+shift+e",
+        "command": "-workbench.view.explorer",
+        "when": "viewContainer.workbench.view.explorer.enabled"
+    },
+    {
+        "key": "shift+alt+f",
+        "command": "notebook.format",
+        "when": "notebookEditable && activeEditor == 'workbench.editor.notebook'"
+    },
+    {
+        "key": "shift+alt+f",
+        "command": "editor.action.formatDocument",
+        "when": "editorHasDocumentFormattingProvider && editorTextFocus && !editorReadonly && !inCompositeEditor"
+    },
+    {
+        "key": "ctrl+alt+o",
+        "command": "openInIntegratedTerminal"
+    },
+    {
+        "key": "ctrl+alt+y",
+        "command": "workbench.files.action.refreshFilesExplorer"
+    },
+    {
+        "key": "alt+insert",
+        "command": "welcome.showNewFileEntries"
+    },
+    {
+        "key": "ctrl+alt+meta+n",
+        "command": "-welcome.showNewFileEntries"
+    },
+    {
+        "key": "alt+f12",
+        "command": "workbench.action.terminal.toggleTerminal",
+    },
+    {
+        "key": "ctrl+alt+s",
+        "command": "workbench.action.openSettingsJson"
+    },
+    {
+        "key": "alt+f1",
+        "command": "revealInExplorer",
+        "when": "!view.workbench.explorer.fileView.visible"
+    },
+    {
+        "key": "alt+f1",
+        "command": "workbench.action.toggleSidebarVisibility",
+        "when": "view.workbench.explorer.fileView.visible"
+    },
+    {
+        "key": "ctrl+b",
+        "command": "editor.action.revealDefinition",
+        "when": "editorHasDefinitionProvider"
+    },
+    {
+        "key": "ctrl+alt+h",
+        "command": "references-view.showCallHierarchy",
+        "when": "editorHasCallHierarchyProvider"
+    },
+    {
+        "key": "ctrl+alt+b",
+        "command": "editor.showTypeHierarchy",
+        "when": "editorHasTypeHierarchyProvider && !inReferenceSearchEditor"
+    },
+    {
+        "key": "ctrl+u",
+        "command": "-cursorUndo",
+        "when": "textInputFocus"
+    },
+    {
+        "key": "ctrl+u",
+        "command": "references-view.showSupertypes"
+    },
+    {
+        "key": "ctrl+shift+n",
+        "command": "workbench.action.quickOpen"
+    },
+    {
+        "key": "ctrl+f12",
+        "command": "workbench.action.gotoSymbol",
+        "when": "!accessibilityHelpIsShown && !accessibleViewIsShown"
+    },
+    {
+        "key": "ctrl+n",
+        "command": "workbench.action.showAllSymbols"
+    },
+    {
+        "key": "ctrl+shift+a",
+        "command": "workbench.action.showCommands"
+    },
+    {
+        "key": "ctrl+p",
+        "command": "editor.action.triggerParameterHints",
+        "when": "editorHasSignatureHelpProvider && editorTextFocus"
+    },
+    {
+        "key": "ctrl+alt+left",
+        "command": "workbench.action.navigateBack",
+        "when": "canNavigateBack"
+    },
+    {
+        "key": "ctrl+alt+right",
+        "command": "workbench.action.navigateForward",
+        "when": "canNavigateForward"
+    },
+    {
+        "key": "shift+f6",
+        "command": "-workbench.action.focusPreviousPart"
+    },
+    {
+        "key": "shift+f6",
+        "command": "editor.action.rename",
+        "when": "editorHasRenameProvider && editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "shift+f6",
+        "command": "renameFile",
+        "when": "!editorTextFocus"
+    },
+    {
+        "key": "alt+enter",
+        "command": "editor.action.quickFix",
+        "when": "editorHasCodeActionsProvider && textInputFocus && !editorReadonly"
+    },
+    {
+        "key": "alt+f7",
+        "command": "references-view.findReferences",
+        "when": "editorHasReferenceProvider"
+    },
+    {
+        "key": "ctrl+numpad_divide",
+        "command": "editor.action.commentLine",
+        "when": "editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "ctrl+j",
+        "command": "editor.action.insertSnippet",
+        "when": "!editorReadonly"
+    },
+    {
+        "key": "f2",
+        "command": "editor.action.marker.next",
+        "when": "editorFocus"
+    },
+    {
+        "key": "alt+f8",
+        "command": "-editor.action.marker.next",
+        "when": "editorFocus"
+    },
+    {
+        "key": "shift+f2",
+        "command": "editor.action.marker.prev",
+        "when": "editorFocus"
+    },
+    {
+        "key": "shift+alt+f8",
+        "command": "-editor.action.marker.prev",
+        "when": "editorFocus"
+    },
+    {
+        "key": "ctrl+'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+            "sequence": [
+                "workbench.action.alignPanelCenter",
+                "workbench.action.toggleMaximizedPanel",
+            ]
+        },
+        "when": "!panelMaximized"
+    },
+    {
+        "key": "ctrl+'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+            "sequence": [
+                "workbench.action.toggleMaximizedPanel",
+                "workbench.action.alignPanelJustify",
+            ]
+        },
+        "when": "panelMaximized"
+    },
+    {
+        "key": "ctrl+shift+numpad_subtract",
+        "command": "workbench.files.action.collapseExplorerFolders"
+    },
+]

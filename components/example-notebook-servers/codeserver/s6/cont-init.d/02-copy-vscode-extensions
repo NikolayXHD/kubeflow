@@ -1,0 +1,12 @@
+#!/command/with-contenv bash
+
+# the home directory is usually a PVC
+# we need to copy the contents of $HOME_TMP that we populated during the build
+# NOTE: -T ensures that the CONTENTS of $HOME_TMP are copied, and not the directory itself
+#       -a preserves permissions and special bits
+echo "INFO: Copying VSCode extensions"
+# We deliberately do not use -n flag, so that copy overwrites existing files.
+# This is because VSCode reads the list of extensions from
+# ~/.local/share/code-server/extensions/extensions.json, and we need to overwrite
+# it with up-to-date list of installed extensions.
+cp -arT "$HOME_TMP/.local/share/code-server/extensions" "$HOME/.local/share/code-server/extensions"
