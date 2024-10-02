@@ -1,0 +1,59 @@
+// Place your key bindings in this file to override the defaults
+[
+    {
+        "key": "numpad0 numpad0",
+        "command": "jupyter.restartkernel",
+        "when": "notebookEditorFocused && !inputFocus"
+    },
+    {
+        "key": "0 0",
+        "command": "jupyter.restartkernel",
+        "when": "notebookEditorFocused && !inputFocus"
+    },
+    {
+        "key": "ctrl+m",
+        "command": "workbench.action.toggleMenuBar"
+    },
+    {
+        "key": "alt+p",
+        "command": "workbench.action.pinEditor",
+        "when": "!activeEditorIsPinned"
+    },
+    {
+        "key": "alt+p",
+        "command": "workbench.action.unpinEditor",
+        "when": "activeEditorIsPinned"
+    },
+    {
+        "key": "shift+alt+f",
+        "command": "notebook.format",
+        "when": "notebookEditable && activeEditor == 'workbench.editor.notebook'"
+    },
+    {
+        "key": "shift+alt+f",
+        "command": "editor.action.formatDocument",
+        "when": "editorHasDocumentFormattingProvider && editorTextFocus && !editorReadonly && !inCompositeEditor"
+    },
+    {
+        "key": "ctrl+'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+            "sequence": [
+                "workbench.action.alignPanelCenter",
+                "workbench.action.toggleMaximizedPanel",
+            ]
+        },
+        "when": "!panelMaximized"
+    },
+    {
+        "key": "ctrl+'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+            "sequence": [
+                "workbench.action.toggleMaximizedPanel",
+                "workbench.action.alignPanelJustify",
+            ]
+        },
+        "when": "panelMaximized"
+    },
+]
