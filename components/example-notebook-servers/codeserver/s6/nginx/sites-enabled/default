@@ -1,0 +1,22 @@
+server {
+    listen 8888 default_server;
+
+    location _NB_PREFIX_/ {
+        proxy_pass http://127.0.0.1:8887/;
+        proxy_set_header Sec-WebSocket-Extensions $http_sec_websocket_version;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+
+        add_header X-Debug-Host $http_host;
+        add_header X-Debug-Original-Host $http_x_original_host;
+        add_header X-Debug-Forwarded-Host $http_x_forwarded_host;
+        proxy_set_header Host _HOST_;
+        more_clear_input_headers X-Original-Host X-Forwarded-Host;
+
+        proxy_buffering off;
+        proxy_cache_bypass $http_upgrade;
+        proxy_read_timeout 3600;
+        proxy_send_timeout 3600;
+    }
+}

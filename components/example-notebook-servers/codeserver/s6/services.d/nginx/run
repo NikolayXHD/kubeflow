@@ -1,0 +1,7 @@
+#!/command/with-contenv bash
+echo "NB_PREFIX=${NB_PREFIX}"
+echo "HOST=${HOST}"
+
+sed -i "s|_HOST_|${HOST}|g" /etc/nginx/sites-enabled/default && \
+sed -i "s|_NB_PREFIX_|${NB_PREFIX}|g" /etc/nginx/sites-enabled/default && \
+nginx -c /etc/nginx/nginx.conf -g 'daemon off;'
