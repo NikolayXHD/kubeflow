@@ -33,7 +33,6 @@ RUN apt -yq update \
 
 RUN chown $NB_UID:$NB_GID -R /var/log/nginx /var/lib/nginx /etc/nginx
 
-
 # We don't have internet access in running kubeflow instances, so VSCode
 # extensions have to be installed at docker build time
 USER $NB_UID
@@ -75,6 +74,12 @@ RUN apt -yq update \
 
 COPY install_lazygit.sh /tmp
 RUN /tmp/install_lazygit.sh && rm /tmp/install_lazygit.sh
+
+COPY install_tig.sh /tmp
+RUN /tmp/install_tig.sh && rm /tmp/install_tig.sh
+
+COPY install_git_delta.sh /tmp
+RUN /tmp/install_git_delta.sh && rm /tmp/install_git_delta.sh
 
 USER $NB_UID
 

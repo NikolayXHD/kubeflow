@@ -76,6 +76,12 @@ RUN apt -yq update \
 COPY install_lazygit.sh /tmp
 RUN /tmp/install_lazygit.sh && rm /tmp/install_lazygit.sh
 
+COPY install_tig.sh /tmp
+RUN /tmp/install_tig.sh && rm /tmp/install_tig.sh
+
+COPY install_git_delta.sh /tmp
+RUN /tmp/install_git_delta.sh && rm /tmp/install_git_delta.sh
+
 USER $NB_UID
 
 # s6 - copy scripts
