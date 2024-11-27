@@ -9,7 +9,7 @@ PATH="$HOME/.local/bin:$PATH"
 
 exec 2>&1
 exec /usr/bin/code-server \
-  --bind-addr 0.0.0.0:8887 \
+  --bind-addr 0.0.0.0:8888 \
   --disable-telemetry \
   --disable-update-check \
   --disable-workspace-trust \
