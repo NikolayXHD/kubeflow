@@ -1,3 +1,5 @@
+#!/bin/bash
+
 GIT_DELTA_VERSION=0.18.2
 GIT_DELTA_ARCH=amd64
 

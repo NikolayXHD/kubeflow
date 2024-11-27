@@ -7,12 +7,23 @@ mkdir -p git
 # to run poetry from vscode terminal
 PATH="$HOME/.local/bin:$PATH"
 
+EXTENSIONS_DIR="$HOME/.local/share/code-server/extensions"
+mkdir -p "$EXTENSIONS_DIR"
+
 exec 2>&1
-exec /usr/bin/code-server \
-  --bind-addr 0.0.0.0:8888 \
-  --disable-telemetry \
-  --disable-update-check \
-  --disable-workspace-trust \
-  --disable-getting-started-override \
-  --auth none \
-  "${HOME}"/git
+exec /usr/bin/code serve-web \
+  --host 0.0.0.0 \
+  --port 8888 \
+  --without-connection-token \
+  --accept-server-license-terms \
+  --extensions-dir "$EXTENSIONS_DIR"
+
+# exec 2>&1
+# exec /vscode/.vscode-server/bin/f1a4fb101478ce6ec82fe9627c43efbf9e98c813/bin/code-server \
+#   --host 0.0.0.0 \
+#   --port 8888 \
+#   --without-connection-token \
+#   --accept-server-license-terms \
+#   --telemetry-level off \
+#   --disable-workspace-trust \
+#   "${HOME}"/git

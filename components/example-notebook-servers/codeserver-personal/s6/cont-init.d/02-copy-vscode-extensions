@@ -1,7 +1,0 @@
-#!/command/with-contenv bash
-
-# VSCode reads the list of extensions from ~/.local/share/code-server/extensions/extensions.json,
-# and we need to overwrite it with up-to-date list of installed extensions.
-echo "INFO: Copy VSCode extensions list"
-# -a preserves permissions and special bits
-cp -a "$HOME_TMP/.local/share/code-server/extensions/extensions.json" "$HOME/.local/share/code-server/extensions"

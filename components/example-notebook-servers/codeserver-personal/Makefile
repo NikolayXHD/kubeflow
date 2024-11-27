@@ -18,9 +18,9 @@ GIT_TREE_STATE := $(shell test -n "`git status --porcelain`" && echo "-dirty" ||
 REGISTRY ?= docker.io/kubeflownotebookswg
 TAG      ?= sha-$(GIT_COMMIT)$(GIT_TREE_STATE)
 
-IMAGE_NAME := codeserver-nmid
-BASE_IMAGE         := $(REGISTRY)/base:$(TAG)
-BASE_IMAGE_FOLDERS := base
+IMAGE_NAME         := codeserver-nmid
+BASE_IMAGE         := $(REGISTRY)/codeserver:$(TAG)
+BASE_IMAGE_FOLDERS := codeserver
 
 # we use a separate registry-type cache to keep the main registry clean
 # https://docs.docker.com/build/cache/backends/

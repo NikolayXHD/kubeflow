@@ -6,19 +6,52 @@ ARG TARGETARCH
 # args - software versions
 USER root
 
-ARG CODESERVER_VERSION=v4.93.1
-
-# install - code-server
-RUN curl -fsSL "https://github.com/coder/code-server/releases/download/${CODESERVER_VERSION}/code-server_${CODESERVER_VERSION/v/}_${TARGETARCH}.deb" -o /tmp/code-server.deb \
-    && dpkg -i /tmp/code-server.deb \
-    && rm -f /tmp/code-server.deb
-
 RUN chown ${NB_USER}:${NB_GID} -R /home/${NB_USER}
+
+RUN apt -yq update \
+    && apt install -yq python3.10-venv python3.11 python3.11-venv python-is-python3 \
+    && apt clean \
+    && rm -rf /var/lib/apt/lists/*
+
+# No need to install nvidia driver or toolkit since kubeflow mounts it to the
+# container.
+
+RUN apt -yq update \
+    && apt install -yq \
+    7zip build-essential curl mc zip rsync man-db htop nvtop \
+    && apt clean \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY install_lazygit.sh /tmp
+RUN /tmp/install_lazygit.sh && rm /tmp/install_lazygit.sh
+
+COPY install_tig.sh /tmp
+RUN /tmp/install_tig.sh && rm /tmp/install_tig.sh
+
+COPY install_git_delta.sh /tmp
+RUN /tmp/install_git_delta.sh && rm /tmp/install_git_delta.sh
+
+# install vscode
+RUN DEBIAN_FRONTEND=noninteractive \
+    wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg \
+    && install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg \
+    && echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" \
+        | tee /etc/apt/sources.list.d/vscode.list > /dev/null \
+    && rm -f packages.microsoft.gpg \
+    && apt -yq update \
+    && apt install -yq code \
+    && apt clean \
+    && rm -rf /var/lib/apt/lists/*
+
+# COPY --chown=${NB_USER}:${NB_GID} --chmod=755 download-vs-code.sh /tmp
 
 # We don't have internet access in running kubeflow instances, so VSCode
 # extensions have to be installed at docker build time
 USER $NB_UID
-RUN code-server --force \
+
+RUN /usr/bin/code \
+    --extensions-dir $HOME_TMP/.local/share/code-server/extensions \
+    --force \
     --install-extension ms-python.python \
     --install-extension ms-python.isort \
     --install-extension ms-python.black-formatter \
@@ -38,39 +71,18 @@ RUN code-server --force \
     && cp -ar $HOME/.local $HOME/.config $HOME_TMP \
     && rm -r $HOME/.local $HOME/.config
 
-USER root
+# RUN /tmp/download-vs-code.sh "linux" "x64" --extensions \
+#     "ms-python.python ms-python.isort ms-python.black-formatter ms-python.mypy-type-checker ms-vscode.makefile-tools ms-toolsai.jupyter mtxr.sqltools mtxr.sqltools-driver-pg mtxr.sqltools-driver-mysql redhat.vscode-yaml janisdd.vscode-edit-csv mechatroner.rainbow-csv tamasfe.even-better-toml donjayamanne.githistory ryuta46.multi-command"
 
-RUN apt -yq update \
-    && apt install -yq python3.10-venv python3.11 python3.11-venv \
-    && apt clean \
-    && rm -rf /var/lib/apt/lists/*
+# RUN curl -sSL https://install.python-poetry.org | python3 - \
+#     && cp -ar $HOME/.local $HOME/.config $HOME_TMP \
+#     && rm -r $HOME/.local $HOME/.config
 
-# No need to install nvidia driver or toolkit since kubeflow mounts it to the
-# container.
-
-RUN apt -yq update \
-    && apt install -yq \
-    7zip build-essential curl fish mc zip rsync man-db \
-    && apt clean \
-    && rm -rf /var/lib/apt/lists/*
-
-COPY install_lazygit.sh /tmp
-RUN /tmp/install_lazygit.sh && rm /tmp/install_lazygit.sh
-
-COPY install_tig.sh /tmp
-RUN /tmp/install_tig.sh && rm /tmp/install_tig.sh
-
-COPY install_git_delta.sh /tmp
-RUN /tmp/install_git_delta.sh && rm /tmp/install_git_delta.sh
-
-USER $NB_UID
+# RUN curl -sSL https://install.python-poetry.org | python3 - \
+#     && cp -ar $HOME/.local $HOME_TMP \
+#     && rm -r $HOME/.local
 
 # s6 - copy scripts
 COPY --chown=${NB_USER}:${NB_GID} --chmod=755 s6/ /etc
-
-# Copy vscode settings and shortcuts. These file are then copied without
-# overwriting into mounted /home/jovyan by
-# components/example-notebook-servers/base/s6/cont-init.d/01-copy-tmp-home
-COPY --chown=${NB_USER}:${NB_GID} home_tmp/ $HOME_TMP
 
 EXPOSE 8888
